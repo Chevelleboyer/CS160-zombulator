@@ -27,7 +27,7 @@ function draw() {
 	fill(0, 12, 91);
 	strokeWeight(8);
 	stroke(2, 237, 29);
-	ellipse(300, zombie4x, 50, 50);
+	ellipse(300, zombie4x, 100, 100);
 zombieX = zombieX + 2;
 zombie2X = zombie2X + 3;
 zombie3x = zombie3x + 4;
@@ -43,6 +43,9 @@ if (zombie2X >= 800) {
 }
 if (zombie3x >= 800) {
 	zombie3x = 0;
+}
+if (zombie4x >= 800) {
+	zombie4x = 0;
 }
 
 }
