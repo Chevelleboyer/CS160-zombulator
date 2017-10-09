@@ -36,7 +36,7 @@ zombie4x = zombie4x + 1;
 if (zombieX >= 800) {
 	zombieX = 100;
 	zombieX = zombieX - 2;
-	zxcolor = color(255, 0, 208);
+	zxcolor = color(255, 93, 0);
 }
 if (zombie2X >= 800) {
 	zombie2X = 0;
