@@ -1,63 +1,42 @@
 // Zombulator by Chevelle Boyer
 
-var zombieX = 50;
-var zombie2X = 100;
-var zombie3x = 50;
-var zombie4x = 300;
+var zombieY = 50;
+var humanY = 100;
 var zombieColor;
-var z2Color;
-var z3Color;
-var z4color;
+var humanColor;
 var backgroundColor;
+var zombieV = 0;
+var zombieA = 0.2;
+var zombieSize = 80;
+var zombieDamping = -0.7;
 
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	zombieColor = color(0, 29, 255);
-	z2Color = color(150, 150, 200);
-	z3Color = color(110, 254, 0);
-	z4color = color(0, 12, 91);
+	humanColor = color(150, 150, 200);
 	backgroundColor = (186, 186, 186);
 }
 
 function draw() {
 	background(backgroundColor);
 	fill(zombieColor);
-	strokeWeight(5);
-	stroke(150, 150, 200);	
-	ellipse(50, zombieX, 80, 80);
-	fill(z2Color);
-	strokeWeight(3);
-	stroke(255, 0, 208);
-	ellipse(zombie2X, 100, 80, 80);
-	fill(z3Color);
-	strokeWeight(10);
-	stroke(0, 255, 4);
-	ellipse(zombie3x, 80, 50, 80);
-	fill(z4color);
-	strokeWeight(8);
-	stroke(2, 237, 29);
-	ellipse(300, zombie4x, 100, 100);
-zombieX = zombieX + 6;
-zombie2X = zombie2X + 4;
-zombie3x = zombie3x + 9;
-zombie4x = zombie4x + 7;
-
-if (zombieX >= windowHeight) {
-	zombieX = 0;
+	noStroke();
+	ellipse(50, zombieY, zombieSize, zombieSize);
+	zombieY += zombieV;
+	zombieV += zombieA;
+if (zombieY + (zombieSize / 2) >= windowHeight) {
+	zombieY = windowHeight - (zombieSize / 2);
+	zombieV *= zombieDamping;
 	zombieColor = color(random(255), random(255), random(255));
 }
-if (zombie2X >= windowWidth) {
-	zombie2X = 0;
-	z2Color = color(random(255), random(255), random(255));
-}
-if (zombie3x >= windowWidth) {
-	zombie3x = 0;
-	z3Color = color(random(255), random(255), random(255));
-}
-if (zombie4x >= windowHeight) {
-	zombie4x = 0;
-	z4color = color(random(255), random(255), random(255));
+	fill(humanColor);
+	noStroke();
+	ellipse(500, humanY, 80, 80);
+	humanY += 4;
+if (humanY >= windowWidth) {
+	humanY = 0;
+	humanColor = color(random(255), random(255), random(255));
 }
 
 }
