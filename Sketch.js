@@ -8,18 +8,20 @@ var zombieColor;
 var z2Color;
 var z3Color;
 var z4color;
+var backgroundColor;
+
 
 function setup() {
-	createCanvas(800, 800);
+	createCanvas(windowWidth, windowHeight);
 	zombieColor = color(0, 29, 255);
 	z2Color = color(150, 150, 200);
 	z3Color = color(110, 254, 0);
 	z4color = color(0, 12, 91);
-	
+	backgroundColor = (186, 186, 186);
 }
 
 function draw() {
-	background(255, 255, 255);
+	background(backgroundColor);
 	fill(zombieColor);
 	strokeWeight(5);
 	stroke(150, 150, 200);	
@@ -41,19 +43,19 @@ zombie2X = zombie2X + 4;
 zombie3x = zombie3x + 9;
 zombie4x = zombie4x + 7;
 
-if (zombieX >= 800) {
+if (zombieX >= windowHeight) {
 	zombieX = 0;
 	zombieColor = color(random(255), random(255), random(255));
 }
-if (zombie2X >= 800) {
+if (zombie2X >= windowWidth) {
 	zombie2X = 0;
 	z2Color = color(random(255), random(255), random(255));
 }
-if (zombie3x >= 800) {
+if (zombie3x >= windowWidth) {
 	zombie3x = 0;
 	z3Color = color(random(255), random(255), random(255));
 }
-if (zombie4x >= 800) {
+if (zombie4x >= windowHeight) {
 	zombie4x = 0;
 	z4color = color(random(255), random(255), random(255));
 }
