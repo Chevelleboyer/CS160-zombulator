@@ -1,67 +1,58 @@
-// Zombulator by Bill Clinton
-
-var zombieY = 100;
-var zombieV = 0;
-var zombieA = 0.2;
-var zombieDamping = -0.5;
-var zombieSize = 80;
-var zombieColor;
-
-var humanY = 100;
-var humanV = 0;
-var humanA = 0.6;
-var humanDamping = -0.8;
-var humanSize = 80;
-var humanColor;
+// Zombulator by Chevelle Boyer, Cameron Burns
+// CS 160 Exercise 12: Function practice. Preamble to arrays.
 
 var backgroundColor;
 
+const MIN_SIZE = 25; // old browser? change to var.
+const MAX_SIZE = 500;
+
+var zombieX;
+var zombieY;
+var zombieSize;
+var zombieColor;
+
+var humanX;
+var humanY;
+var humanSize;
+var humanColor;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  backgroundColor = color(114, 168, 255);
-  zombieColor = color(242, 255, 0);
-  humanColor = color(random(200, 255), random(200, 255), random(200, 255));
+  backgroundColor = color(245, 255, 245);
+  initializeZombie();
+  initializeHuman();
 }
 
 function draw() {
   background(backgroundColor);
   noStroke();
 
-drawZombie();
-moveZombie();
+  drawZombie();
+  drawHuman();
+}
 
-drawHuman();
-moveHuman();
+function initializeZombie() {
+  zombieX = random(0, windowWidth);
+  zombieY = random(0, 200);
+  zombieSize = random(MIN_SIZE, MAX_SIZE);
+  zombieColor = color(random(50, 255), random(50, 255), random(50, 255), 150);
+}
 
+function initializeHuman() {
+  humanX = random(0, windowWidth);
+  humanY = random(windowHeight / 2, windowHeight);
+  humanSize = random(MIN_SIZE, MAX_SIZE);
+  humanColor = color(random(0, 255), random(150, 83), random(200, 70), random(10, 250));
 }
 
 function drawZombie() {
-	fill(zombieColor);
-    ellipse(windowWidth / 2, zombieY, zombieSize, zombieSize);
-}
-
-function moveZombie() {
-	zombieY += zombieV;
-  zombieV += zombieA;
-  if (zombieY + (zombieSize / 2) >= windowHeight) {
-    zombieY = windowHeight - (zombieSize / 2);
-    zombieV *= zombieDamping;
-  }
+  fill(zombieColor);
+  ellipse(zombieX, zombieY, zombieSize, zombieSize);
 }
 
 function drawHuman() {
-	fill(humanColor);
-  ellipse(windowWidth / 4, humanY, humanSize, humanSize);
-  fill(0);
-  text("human", windowWidth / 4, humanY);
+  fill(humanColor);
+  ellipse(humanX, humanY, humanSize, humanSize);
 }
 
-function moveHuman() {
-	humanY += humanV;
-  humanV += humanA;
-  if (humanY + (humanSize / 2) >= windowHeight) {
-    humanY = windowHeight - (humanSize / 2);
-    humanV *= humanDamping;
-  }
 
-}
