@@ -1,6 +1,6 @@
-// http://tinyurl.com/cs160ex15
-// Zombulator by YOUR NAME
-// CS 160 Exercise 15: Objects
+// http://tinyurl.com/cs160ex16
+// Zombulator by Chevelle Boyer and Amber
+// CS 160 Exercise 16: Biased Random Walk
 
 var backgroundColor;
 
@@ -10,7 +10,6 @@ const NUMBER_OF_ZOMBIES = 100;
 const NUMBER_OF_HUMANS = 100;
 
 var zombies;
-
 var humans;
 
 function setup() {
@@ -25,6 +24,7 @@ function draw() {
   noStroke();
   drawZombies();
   drawHumans();
+  moveHumans();
 }
 
 
@@ -41,6 +41,7 @@ function initializeZombie(index) {
   zombies[index] = {
     x: random(0, windowWidth),
     y: random(0, 200),
+    speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
     color: color(random(100, 255), random(50, 150), random(50, 150), 150)
   };
@@ -48,18 +49,24 @@ function initializeZombie(index) {
 
 function drawZombies() {
   for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
-    drawZombie(i);
+    drawZombie(zombies[i]);
   }
 }
 
-function drawZombie(index) {
-  var zombie = zombies[index];
+function drawZombie(zombie) {
   fill(zombie.color);
   ellipse(zombie.x, zombie.y, zombie.size, zombie.size);
 }
 
+function moveZombies() {
+  for (var i = 0; i < NUMBER_OF_ZOMBIES; ++i) {
+    moveZombie(zombies[i]);
+  }
+}
 
-// Humans. Mmmm brains!
+function moveZombie(zombie) {
+  zombie.y += 1;
+}
 
 function initializeHumans() {
   humans = [];
@@ -71,21 +78,30 @@ function initializeHumans() {
 function initializeHuman(index) {
   humans[index] = {
     x: random(0, windowWidth),
-    y: random(windowHeight / 2 + 100, windowHeight),
+    y: random(windowHeight - 200, windowHeight),
+    speed: random(0.25, 3),
     size: random(MIN_SIZE, MAX_SIZE),
-    color: color(random(0, 250), random(0, 250), random(0, 250), 150)
+    color: color(random(50, 150), random(50, 150), random(150, 255), 150)
   };
 }
 
 function drawHumans() {
   for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
-    drawHuman(i);
+    drawHuman(humans[i]);
   }
 }
 
-function drawHuman(index) {
-  var human = humans[index];
+function drawHuman(human) {
   fill(human.color);
-  ellipse(human.x, human.y, human.size, human. size);
+  ellipse(human.x, human.y, human.size, human.size);
 }
 
+function moveHumans() {
+  for (var i = 0; i < NUMBER_OF_HUMANS; ++i) {
+    moveHuman(humans[i]);
+  }
+}
+
+function moveHuman(human) {
+  human.y -= 1;
+}
