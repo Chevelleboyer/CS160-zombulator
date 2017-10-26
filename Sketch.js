@@ -25,6 +25,7 @@ function draw() {
   drawZombies();
   drawHumans();
   moveHumans();
+  moveZombies();
 }
 
 
