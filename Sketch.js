@@ -96,15 +96,15 @@ function initializeHuman() {
     size: random(MIN_SIZE, MAX_SIZE),
     color: color(random(100, 255), random(50, 150), random(50, 150), 150),
     move: function() {
-      var direction = random(0,100);
+      var direction = random(0, 100);
       if (direction < 20) {
-        this.x += this.speed;
-      } else if (direction < 40) {
         this.x -= this.speed;
+      } else if (direction < 40) {
+        this.x += this.speed;
       } else if (direction < 60) {
-        this.y -= this.speed;
-      } else {
         this.y += this.speed;
+      } else {
+        this.y -= this.speed;
       }
     },
     draw: function() {
