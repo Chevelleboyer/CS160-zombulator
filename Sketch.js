@@ -41,9 +41,6 @@ function handleCollisions() {
       if (((attacker.isTouching(target)) && (attacker.size >= target.size) && (attacker.humanoidType = "zombie"))) {
         target.color = color(183, 204, 0);
       }
-      if (target.color = color(183, 204, 0)) {
-        createAudio(src, Scream.mp3);
-      }
     }
   }
 }
